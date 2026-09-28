@@ -5,21 +5,45 @@ let started = false;
 let level = 0; 
 
 let h2 = document.querySelector("h2");
-let startBtn = document.querySelector("#start-btn"); // FIXED: Added missing variable declaration
+let startBtn = document.querySelector("#start-btn");
 
 function startGame() {
     if (started == false) { 
         console.log("game is started"); 
         started = true; 
         
-        // Hide the start button if it exists in your HTML
+       
         if(startBtn) startBtn.style.display = "none"; 
         
         levelUp(); 
     } 
 }
 
-// Event listeners to start the game
+let celebration = document.querySelector("#celebration");
+
+function levelUp(){
+  userSeq = [];
+  level++;
+  h2.innerText = `LEVEL ${level}`;
+  
+  if (level > 1 && celebration) {
+    celebration.classList.add("show");
+    setTimeout(function() {
+      celebration.classList.remove("show");
+    }, 600);
+  }
+
+  let randIdx = Math.floor(Math.random() * 4);
+  let randColor = btns[randIdx];
+  let randbtn = document.querySelector(`.${randColor}`);
+  gamSeq.push(randColor);
+  console.log(gamSeq);
+  
+  setTimeout(function() {
+    btnFlash(randbtn);
+  }, 400);
+}
+
 if(startBtn) {
     startBtn.addEventListener("click", startGame);
 }
@@ -61,8 +85,11 @@ function checkAns(idx){
            setTimeout(levelUp, 1000);
         }
     } else {
-        h2.innerText = `GAME OVER! YOUR SCORE WAS ${level}. TAP HERE TO RESTART.`;
-        if(startBtn) {
+    let score = level - 1; 
+        h2.innerText = ` GAME OVER! CONGRATS, YOUR SCORE WAS 
+         ${score}`;
+        
+        if(startBtn) {            
             startBtn.innerText = "RESTART GAME";
             startBtn.style.display = "inline-block";
         }
