@@ -12,7 +12,9 @@ body {
     min-height: 100vh;
     box-sizing: border-box;
 }
-
+.container {
+  position: relative;
+}
 h1, h2 {
     font-weight: 700;
     letter-spacing: 2px;
@@ -23,6 +25,20 @@ h2 {
     cursor: pointer;
     user-select: none; 
 }
+.celebration {
+    position: absolute;
+    top: 15%;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #20e371;
+    text-shadow: 0 0 20px rgba(32, 227, 113, 0.8);
+    pointer-events: none;
+    opacity: 0;
+    transform: scale(0.5);
+    transition: all 0.3s ease-in-out;
+   
+}
+
 .rules-container ul {
     list-style-type: none; 
     padding: 0;           
@@ -107,11 +123,12 @@ h2 {
 
 
 .flash {
-    opacity: 1 !important;
-    background-color: white !important;
-    box-shadow: 0 0 40px rgb(20, 2, 2)f, inset 0 0 10px white !important;
-    transform: scale(1.05);
+  opacity: 1 !important;
+  background-color: white !important;
+  box-shadow: 0 0 40px rgb(20, 2, 2), inset 0 0 10px white !important;
+  transform: scale(1.05);
 }
+
 
 .btn.userflash {
     opacity: 1 !important;
